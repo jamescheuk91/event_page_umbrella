@@ -21,7 +21,7 @@ defmodule EventPage.Web.BannerUploader do
 
   # Override the storage directory:
   def storage_dir(version, {_file, scope}) do
-    "./apps/event_page/uploads/events/event_detail/banners/#{scope.id}_#{version}"
+    "../../apps/event_page/uploads/events/event_detail/banners/#{scope.id}_#{version}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
