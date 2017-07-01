@@ -11,7 +11,6 @@ defmodule EventPage.Web.FallbackController do
     conn |> not_found_fallback
   end
 
-
   defp not_found_fallback(conn) do
     conn
       |> put_status(:not_found)
