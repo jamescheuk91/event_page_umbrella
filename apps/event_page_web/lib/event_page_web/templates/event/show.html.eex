@@ -1,27 +1,6 @@
-<% alias EventPage.Web.BannerUploader %>
-<h2>Show Event detail</h2>
+<h2><%= @event_detail.name %></h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <br/>
-    <%= @event_detail.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <br/>
-    <%= @event_detail.description %>
-  </li>
-
-  <li>
-    <strong>Banner: </strong>
-    <br/>
-    <%= img_tag(BannerUploader.url({@event_detail.banner, @event_detail}, :original)) %>
-  </li>
-
-</ul>
+<%= render "event_detail_show.html", event_detail: @event_detail %>
 
 <span><%= link "Edit", to: event_path(@conn, :edit, @event_detail) %></span>
 <span><%= link "Back", to: event_path(@conn, :index) %></span>

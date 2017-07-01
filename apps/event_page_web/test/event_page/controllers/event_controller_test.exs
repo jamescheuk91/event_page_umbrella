@@ -22,7 +22,14 @@ defmodule EventPage.Web.EventControllerTest do
     assert html_response(conn, 200) =~ "Listing Events"
   end
 
-  test "renders form for new event_details", %{conn: conn} do
+  test "renders chosen event", %{conn: conn} do
+    event_detail = fixture(:event_detail)
+    conn = get conn, event_path(conn, :show, event_detail.id)
+    assert html_response(conn, 200) =~ "#{event_detail.name}"
+    assert html_response(conn, 200) =~ "#{event_detail.description}"
+  end
+
+  test "renders form for new events", %{conn: conn} do
     conn = get conn, event_path(conn, :new)
     assert html_response(conn, 200) =~ "New Event"
   end
@@ -34,10 +41,10 @@ defmodule EventPage.Web.EventControllerTest do
     assert redirected_to(conn) == event_path(conn, :show, id)
 
     conn = get conn, event_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "Show Event detail"
+    assert html_response(conn, 200) =~ "#{@create_attrs.name}"
   end
 
-  test "does not create event_detail and renders errors when data is invalid", %{conn: conn} do
+  test "does not create event and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, event_path(conn, :create), event_detail: @invalid_attrs
     assert html_response(conn, 200) =~ "New Event"
   end
@@ -48,7 +55,7 @@ defmodule EventPage.Web.EventControllerTest do
     assert html_response(conn, 200) =~ "Edit #{event_detail.name}"
   end
 
-  test "updates chosen event_detail and redirects when data is valid", %{conn: conn} do
+  test "updates chosen event and redirects when data is valid", %{conn: conn} do
     event_detail = fixture(:event_detail)
     conn = put conn, event_path(conn, :update, event_detail), event_detail: @update_attrs
     assert redirected_to(conn) == event_path(conn, :show, event_detail)
@@ -57,13 +64,13 @@ defmodule EventPage.Web.EventControllerTest do
     assert html_response(conn, 200) =~ "some updated description"
   end
 
-  test "does not update chosen event_detail and renders errors when data is invalid", %{conn: conn} do
+  test "does not update chosen event and renders errors when data is invalid", %{conn: conn} do
     event_detail = fixture(:event_detail)
     conn = put conn, event_path(conn, :update, event_detail), event_detail: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit #{event_detail.name}"
   end
 
-  test "deletes chosen event_detail", %{conn: conn} do
+  test "deletes chosen event", %{conn: conn} do
     event_detail = fixture(:event_detail)
     conn = delete conn, event_path(conn, :delete, event_detail)
     assert redirected_to(conn) == event_path(conn, :index)
