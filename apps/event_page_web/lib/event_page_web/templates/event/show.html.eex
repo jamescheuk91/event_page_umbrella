@@ -23,5 +23,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: event_detail_path(@conn, :edit, @event_detail) %></span>
-<span><%= link "Back", to: event_detail_path(@conn, :index) %></span>
+<span><%= link "Edit", to: event_path(@conn, :edit, @event_detail) %></span>
+<span><%= link "Back", to: event_path(@conn, :index) %></span>

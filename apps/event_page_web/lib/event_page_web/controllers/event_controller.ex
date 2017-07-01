@@ -1,4 +1,4 @@
-defmodule EventPage.Web.EventDetailController do
+defmodule EventPage.Web.EventController do
   use EventPage.Web, :controller
 
   alias EventPage.Events
@@ -23,7 +23,7 @@ defmodule EventPage.Web.EventDetailController do
       {:ok, event_detail} ->
         conn
         |> put_flash(:info, "Event detail created successfully.")
-        |> redirect(to: event_detail_path(conn, :show, event_detail))
+        |> redirect(to: event_path(conn, :show, event_detail))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -48,7 +48,7 @@ defmodule EventPage.Web.EventDetailController do
       {:ok, event_detail} ->
         conn
         |> put_flash(:info, "Event detail updated successfully.")
-        |> redirect(to: event_detail_path(conn, :show, event_detail))
+        |> redirect(to: event_path(conn, :show, event_detail))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", event_detail: event_detail, changeset: changeset)
     end
@@ -59,7 +59,7 @@ defmodule EventPage.Web.EventDetailController do
           {:ok, _event_detail} <- Events.delete_event_detail(event_detail) do
       conn
       |> put_flash(:info, "Event detail deleted successfully.")
-      |> redirect(to: event_detail_path(conn, :index))
+      |> redirect(to: event_path(conn, :index))
     end
   end
 end

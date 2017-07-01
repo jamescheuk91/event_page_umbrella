@@ -19,7 +19,7 @@ defmodule EventPage.Web.Router do
     get "/", RootController, :index
     get "/heartbeat", RootController, :heartbeat
 
-    resources "/event_details", EventDetailController
+    resources "/events", EventController
   end
 
   # Other scopes may use custom stacks.

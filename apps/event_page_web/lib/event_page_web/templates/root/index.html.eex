@@ -9,10 +9,10 @@
     <ul>
 
       <li>
-        <%= link "All Event details", to: event_detail_path(@conn, :index) %>
+        <%= link "List All Events", to: event_path(@conn, :index) %>
       </li>
       <li>
-        <%= link "New Event detail", to: event_detail_path(@conn, :new) %>
+        <%= link "New Event", to: event_path(@conn, :new) %>
       </li>
 
     </ul>
