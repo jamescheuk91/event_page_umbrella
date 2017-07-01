@@ -1,4 +1,4 @@
-defmodule EventPageViewer.Web.PageControllerTest do
+defmodule EventPageViewer.Web.RootControllerTest do
   use EventPageViewer.Web.ConnCase
 
   test "GET /", %{conn: conn} do

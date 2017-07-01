@@ -14,9 +14,6 @@
   <li>
     <strong>Banner: </strong>
     <br/>
-    <%= img_tag(EventPage.Web.BannerUploader.url(
-      {@event_detail.banner, @event_detail},
-      :original
-      )) %>
+    <%= img_tag(EventPage.Web.BannerUploader.url({@event_detail.banner, @event_detail},:original))%>
   </li>
 </ul>

@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for event_detail <- @event_details do %>
+  <%= for event_detail <- @event_details do %>
     <tr>
       <td><%= event_detail.name %></td>
       <td><%= event_detail.description %></td>
@@ -21,7 +21,7 @@
         <span><%= link "Delete", to: event_path(@conn, :delete, event_detail), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
-<% end %>
+  <% end %>
   </tbody>
 </table>
 

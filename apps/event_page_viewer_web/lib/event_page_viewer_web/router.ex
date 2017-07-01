@@ -13,10 +13,18 @@ defmodule EventPageViewer.Web.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :event_page_layout do
+    plug :put_layout, {EventPageViewer.Web.EventLayoutView, "app.html"}
+  end
+
+
   scope "/", EventPageViewer.Web do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", RootController, :index
+
+    pipe_through :event_page_layout
+    get "/:id", EventPageController, :show
   end
 
   # Other scopes may use custom stacks.
