@@ -1,6 +1,8 @@
 defmodule EventPage.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :event_page_web
 
+  # @uploads_path get_uploads_path(Mix.env)
+
   socket "/socket", EventPage.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -11,8 +13,14 @@ defmodule EventPage.Web.Endpoint do
     at: "/", from: :event_page_web, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
-  plug Plug.Static,
-    at: "/uploads", from: Path.expand("../../uploads"), gzip: false
+  case Mix.env do
+    :prod ->
+      plug Plug.Static, at: "/uploads", from: Path.expand("./uploads"), gzip: false
+
+    _ ->
+      plug Plug.Static, at: "/uploads", from: Path.expand("../../uploads"), gzip: false
+  end
+
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -50,6 +58,17 @@ defmodule EventPage.Web.Endpoint do
   It receives the endpoint configuration from the config files
   and must return the updated configuration.
   """
+
+
+  def uploads_path(:prod) do
+    Path.expand("./uploads")
+  end
+
+  def uploads_path(:dev) do
+    Path.expand("../../uploads")
+  end
+
+
   def load_from_system_env(config) do
     # port = System.get_env("PORT") || raise "expected the PORT environment variable to be set"
     # {:ok, Keyword.put(config, :http, [:inet6, port: port])}
