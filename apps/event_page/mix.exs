@@ -41,6 +41,10 @@ defmodule EventPage.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.1"},
       {:arc, "~> 0.8.0"},
+      {:ex_aws,  "~> 1.1"},
+      {:hackney, "~> 1.6"},
+      {:poison, "~> 3.1"},
+      {:sweet_xml, "~> 0.6"},
       {:arc_ecto, "~> 0.7.0"},
       {:plug, "~> 1.0", only: :test},
       {:faker, "~> 0.8", only: :test}

@@ -13,15 +13,6 @@ defmodule EventPage.Web.Endpoint do
     at: "/", from: :event_page_web, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
-  case Mix.env do
-    :prod ->
-      plug Plug.Static, at: "/uploads", from: Path.expand("./uploads"), gzip: false
-
-    _ ->
-      plug Plug.Static, at: "/uploads", from: Path.expand("../../uploads"), gzip: false
-  end
-
-
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

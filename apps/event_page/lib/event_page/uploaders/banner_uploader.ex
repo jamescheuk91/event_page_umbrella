@@ -2,6 +2,7 @@ defmodule EventPage.Web.BannerUploader do
   use Arc.Definition
   use Arc.Ecto.Definition
 
+  @acl :public_read
   @versions [:original]
 
   # Whitelist file extensions:
@@ -21,7 +22,7 @@ defmodule EventPage.Web.BannerUploader do
 
   # Override the storage directory:
   def storage_dir(version, {_file, scope}) do
-    "uploads/events/event_detail/banners/#{scope.id}_#{version}"
+    "events/event_detail/banners/#{scope.id}_#{version}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

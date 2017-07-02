@@ -41,16 +41,13 @@ pre_erlang_clean_compile() {
     ./node_modules/brunch/bin/brunch b -p
     cd '$BUILD_AT/apps/event_page_web'
     mkdir -p priv/static
-
+    MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest
 
     cd '$BUILD_AT/apps/event_page_viewer_web/assets'
     npm install
     ./node_modules/brunch/bin/brunch b -p
     cd '$BUILD_AT/apps/event_page_viewer_web'
     mkdir -p priv/static
-
-    cd '$BUILD_AT'
-
     MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest
   "
 }

@@ -14,8 +14,8 @@ To start your Phoenix server:
   * Install Node.js dependencies with `cd assets && npm install ** cd ..`
   * Start Phoenix endpoint with `mix phx.server`
 
-[`localhost:4000`](http://localhost:4000) for the Admin Page.
-[`localhost:4001`](http://localhost:4001) for the Page Viewer.
+[`localhost:4000`](http://localhost:4001) for the Admin Page.
+[`localhost:4001`](http://localhost:4000) for the Page Viewer.
 
 
 
@@ -25,5 +25,5 @@ Deployment:
   * mix edeliver start production
 
 
-http://188.166.255.184:8008 for the Admin Page
-http://188.166.255.184:8080 for the Page Viewer
+http://139.59.96.210:8008 for the Admin Page
+http://139.59.96.210:8080 for the Page Viewer
