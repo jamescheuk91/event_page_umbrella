@@ -15,8 +15,10 @@ use Mix.Config
 # which you typically run after static files are built.
 config :event_page_viewer_web, EventPageViewer.Web.Endpoint,
   on_init: {EventPageViewer.Web.Endpoint, :load_from_system_env, []},
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: 8080],
+  url: [host: "localhost", port: 8080],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info

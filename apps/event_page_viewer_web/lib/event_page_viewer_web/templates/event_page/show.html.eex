@@ -1,6 +1,6 @@
 
 <div class="jumbotron">
-  <h1>Hello, world!</h1>
+  <h1><%= @event.name %></h1>
   <%= img_tag(EventPage.Web.BannerUploader.url({@event_detail.banner, @event_detail},:original))%>
   <p>
     <%= @event_detail.description %>

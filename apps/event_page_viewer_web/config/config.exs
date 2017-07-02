@@ -7,7 +7,9 @@ use Mix.Config
 
 # General application configuration
 config :event_page_viewer_web,
-  namespace: EventPageViewer.Web
+  namespace: EventPageViewer.Web,
+  ecto_repos: [EventPage.Repo]
+
 
 # Configures the endpoint
 config :event_page_viewer_web, EventPageViewer.Web.Endpoint,
