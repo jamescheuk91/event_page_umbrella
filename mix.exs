@@ -24,7 +24,8 @@ defmodule EventPage.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:distillery, "~> 1.4.1 "},
+      {:distillery, "~> 1.4.1"},
+      {:edeliver, "~> 1.4.3"}
     ]
   end
 

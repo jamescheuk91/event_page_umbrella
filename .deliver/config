@@ -1,0 +1,42 @@
+# .deliver/config
+
+APP="event_page_umbrella"
+
+BUILD_HOST="139.59.96.210"
+BUILD_USER="elixir_builder"
+BUILD_AT="/home/$BUILD_USER/edeliver/$APP/builds"
+
+# Used by umbrella projects only
+RELEASE_DIR="$BUILD_AT/_build/prod/rel/$APP"
+
+PRODUCTION_HOSTS="139.59.96.210" # deploy / production hosts
+PRODUCTION_USER="elixir_deployer" # local user at deploy hosts
+DELIVER_TO="/home/elixir_deployer/$APP_staging" # deploy directory on production hosts
+
+
+# For *Phoenix* projects, symlink prod.secret.exs to our tmp source
+pre_erlang_get_and_update_deps() {
+  local _local_event_page_prod_secret_path="./apps/event_page/config/prod.secret.exs"
+  local _local_event_page_web_prod_secret_path="./apps/event_page/config/prod.secret.exs"
+  local _local_event_page_viewer_web_prod_secret_path="./apps/event_page_viewer_web/config/prod.secret.exs"
+
+  if [ "$TARGET_MIX_ENV" = "prod" ]; then
+    status "Copying '$_local_event_page_prod_secret_path' file to '$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page/config/prod.secret.exs'"
+    scp "$_local_event_page_prod_secret_path" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page/config/prod.secret.exs"
+
+    status "Copying '$_local_event_page_web_prod_secret_path' file to '$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page_web/config/prod.secret.exs'"
+    scp "$_local_event_page_web_prod_secret_path" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page_web/config/prod.secret.exs"
+
+    status "Copying '$_local_event_page_viewer_web_prod_secret_path' file to '$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page_viewer_web/config/prod.secret.exs'"
+    scp "$_local_event_page_viewer_web_prod_secret_path" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/apps/event_page_viewer_web/config/prod.secret.exs"
+  fi
+}
+
+pre_erlang_clean_compile() {
+  status "Running phx.digest"
+  __sync_remote " # runs the commands on the build host
+    set -e # fail if any command fails (recommended)
+    cd '$BUILD_AT'
+    MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest
+  "
+}

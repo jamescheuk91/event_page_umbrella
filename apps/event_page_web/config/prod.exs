@@ -16,7 +16,7 @@ use Mix.Config
 config :event_page_web, EventPage.Web.Endpoint,
   on_init: {EventPage.Web.Endpoint, :load_from_system_env, []},
   http: [port: 8008],
-  url: [host: "localhost", port: 8008],
+  url: [host: "188.166.255.184", port: 8008],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
