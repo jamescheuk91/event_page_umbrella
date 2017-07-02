@@ -10,7 +10,6 @@ config :event_page_viewer_web,
   namespace: EventPageViewer.Web,
   ecto_repos: [EventPage.Repo]
 
-
 # Configures the endpoint
 config :event_page_viewer_web, EventPageViewer.Web.Endpoint,
   url: [host: "localhost"],
@@ -23,6 +22,10 @@ config :event_page_viewer_web, EventPageViewer.Web.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+config :event_page_web, :generators,
+  context_app: :event_page
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

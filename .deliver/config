@@ -36,7 +36,20 @@ pre_erlang_clean_compile() {
   status "Running phx.digest"
   __sync_remote " # runs the commands on the build host
     set -e # fail if any command fails (recommended)
+    cd '$BUILD_AT/apps/event_page_web/assets'
+    npm install
+    ./node_modules/brunch/bin/brunch b -p
+    cd '$BUILD_AT/apps/event_page_web'
+    mkdir -p priv/static
+
+
+    cd '$BUILD_AT/apps/event_page_viewer_web/assets'
+    npm install
+    ./node_modules/brunch/bin/brunch b -p
+    cd '$BUILD_AT/apps/event_page_viewer_web'
+    mkdir -p priv/static
+
     cd '$BUILD_AT'
-    MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest
+    MIX_ENV='$TARGET_MIX_ENV' mix phx.digest
   "
 }
