@@ -5,7 +5,10 @@
     </div>
   <% end %>
 
-  <%= render "form_fields.html", f: f %>
+  <%= render "event_form_fields.html", f: f %>
+
+  <%= render "attendees_file_field.html", f: f %>
+
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

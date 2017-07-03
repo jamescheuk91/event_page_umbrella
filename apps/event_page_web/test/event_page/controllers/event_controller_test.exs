@@ -5,7 +5,8 @@ defmodule EventPage.Web.EventControllerTest do
 
 
   @create_attrs %{description: "some description", name: "some name",
-    banner: %Plug.Upload{path: "test/fixtures/fixture_banner1.jpeg", filename: "fixture_banner1.jpeg"}
+    banner: %Plug.Upload{path: "test/fixtures/fixture_banner1.jpeg", filename: "fixture_banner1.jpeg"},
+    attendee_list_file: %Plug.Upload{content_type: "text/csv", path: "test/fixtures/rise_conf_attendee_list.csv"}
   }
   @update_attrs %{description: "some updated description", name: "some updated name",
     banner: %Plug.Upload{path: "test/fixtures/fixture_banner2.jpeg", filename: "fixture_banner1.jpeg"}
@@ -42,6 +43,7 @@ defmodule EventPage.Web.EventControllerTest do
 
     conn = get conn, event_path(conn, :show, id)
     assert html_response(conn, 200) =~ "#{@create_attrs.name}"
+    assert html_response(conn, 200) =~ "Gary Vaynerchuk"
   end
 
   test "does not create event and renders errors when data is invalid", %{conn: conn} do

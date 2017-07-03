@@ -20,6 +20,9 @@
   </li>
 </ul>
 
+<%= if length(@attendees)> 0 do %>
+<%= render "attendees_index.html", attendees: @attendees %>
+<%= end %>
 
 
 <span><%= link "Edit", to: event_path(@conn, :edit, @event) %></span>

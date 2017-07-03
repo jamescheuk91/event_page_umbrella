@@ -1,0 +1,5 @@
+<div class="form-group">
+  <%= label @f, "Attendee List(.csv) [name, title, description, avatar]", class: "control-label" %>
+  <br/>
+  <%= file_input @f, :attendee_list_file %>
+</div>

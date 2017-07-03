@@ -1,0 +1,19 @@
+<h3>Listing Attendees</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for attendee <- @attendees do %>
+    <tr>
+      <td><%= attendee.name %></td>
+      <td><%= attendee.title %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
