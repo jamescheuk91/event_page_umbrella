@@ -11,7 +11,7 @@ defmodule EventPage.Web.AttendeeController do
 
   def index(conn, _params) do
     event = conn.assigns.event
-    with attendees  <- PageContents.list_attendees(event.id) do
+    with attendees <- PageContents.list_attendees(event.id) do
       conn |> render("index.html", event: event, attendees: attendees)
     end
   end
@@ -19,7 +19,7 @@ defmodule EventPage.Web.AttendeeController do
   def new(conn, _params) do
     event = conn.assigns.event
     attendee = %Attendee{page_contents_event_id: event.id}
-    with changeset  <- PageContents.change_attendee(attendee) do
+    with changeset <- PageContents.change_attendee(attendee) do
       conn |> render("new.html", event: event, changeset: changeset)
     end
   end
@@ -39,7 +39,7 @@ defmodule EventPage.Web.AttendeeController do
   end
 
   def show(conn, %{"id" => id}) do
-    with %Attendee{} = attendee  <- PageContents.get_attendee(id) do
+    with %Attendee{} = attendee <- PageContents.get_attendee(id) do
       conn |> render("show.html", attendee: attendee)
     end
   end
@@ -74,7 +74,7 @@ defmodule EventPage.Web.AttendeeController do
   end
 
   defp put_event(%{params: %{"event_id" => event_id}} = conn, _opts) do
-    with %Event{} = event  <- PageContents.get_event(event_id) do
+    with %Event{} = event <- PageContents.get_event(event_id) do
       conn |> assign(:event, event)
     end
   end

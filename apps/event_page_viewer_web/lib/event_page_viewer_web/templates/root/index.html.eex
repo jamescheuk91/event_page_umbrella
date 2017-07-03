@@ -1,14 +1,15 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "EventPageViewer" %></h2>
-  <p class="lead">A place for you to view event page!</p>
+  <h2 class="display-4">Welcome to EventPageViewer!</h2>
+  <p class="lead">A place for you to view event pages!</p>
 </div>
+
 
 <div class="row marketing">
   <div class="col-lg-12">
     <h4>Event Pages:</h4>
     <%= for event <- @events do %>
       <ul>
-        <%= link "#{event.name}", to: event_page_path(@conn, :show, event.id) %>
+        <%= link "#{event.name}", to: home_page_path(@conn, :show, event.id) %>
       </ul>
       <% end %>
   </div>

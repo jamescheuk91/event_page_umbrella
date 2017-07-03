@@ -18,6 +18,8 @@ To start your Phoenix server:
 [`localhost:4001`](http://localhost:4000) for the Page Viewer.
 
 
+Launch test watcher:
+  * mix test.watch
 
 Deployment:
   * mix edeliver build release production --verbose

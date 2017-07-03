@@ -27,8 +27,8 @@ defmodule EventPage.Web.EventControllerTest do
     event = fixture(:event)
     conn = get conn, event_path(conn, :show, event.id)
     response = html_response(conn, 200)
-    assert response =~ "#{event.name}"
-    assert response =~ "#{event.description}"
+    assert response =~ event.name
+    assert response =~ event.description
   end
 
   test "renders form for new events", %{conn: conn} do
@@ -44,7 +44,7 @@ defmodule EventPage.Web.EventControllerTest do
 
     conn = get conn, event_path(conn, :show, id)
     response = html_response(conn, 200)
-    assert response =~ "#{@create_attrs.name}"
+    assert response =~ @create_attrs.name
     assert response =~ "Gary Vaynerchuk"
   end
 

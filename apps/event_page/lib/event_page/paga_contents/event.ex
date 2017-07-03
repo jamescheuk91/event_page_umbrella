@@ -24,6 +24,6 @@ defmodule EventPage.PageContents.Event do
     |> cast_attachments(attrs, [:banner])
     |> validate_required([:name, :description])
     |> validate_length(:name, min: 3, max: 100)
-    |> validate_length(:description, min: 3, max: 500)
+    |> validate_length(:description, min: 3, max: 1000)
   end
 end

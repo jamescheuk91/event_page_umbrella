@@ -6,13 +6,24 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
     "phoenix": "file:../../../deps/phoenix",
     "phoenix_html": "file:../../../deps/phoenix_html"
   },
   "devDependencies": {
+    "ansi-color": "^0.2.1",
+    "ansicolors": "^0.3.2",
     "babel-brunch": "6.0.6",
-    "brunch": "2.10.7",
+    "brunch": "2.10.9",
     "clean-css-brunch": "2.10.0",
+    "color-convert": "^1.9.0",
+    "copycat-brunch": "^1.1.0",
+    "date-utils": "^1.2.21",
+    "growl": "^1.9.2",
+    "has-flag": "^2.0.0",
+    "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "2.1.1"
   }
 }

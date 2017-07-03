@@ -32,8 +32,8 @@ defmodule EventPage.Web.EventController do
   end
 
   def show(conn, %{"id" => id}) do
-    with %Event{} = event  <- PageContents.get_event(id),
-          attendees  <- PageContents.list_attendees(event.id) do
+    with %Event{} = event <- PageContents.get_event(id),
+          attendees <- PageContents.list_attendees(event.id) do
       conn |> render("show.html", event: event, attendees: attendees)
     end
   end
@@ -59,8 +59,8 @@ defmodule EventPage.Web.EventController do
   end
 
   def delete(conn, %{"id" => id}) do
-    with %Event{} = event  <- PageContents.get_event(id),
-          {:ok, _event}  <- PageContents.delete_event(event) do
+    with %Event{} = event <- PageContents.get_event(id),
+          {:ok, _event} <- PageContents.delete_event(event) do
       conn
       |> put_flash(:info, "Event deleted successfully.")
       |> redirect(to: event_path(conn, :index))
@@ -77,7 +77,8 @@ defmodule EventPage.Web.EventController do
   # TODO: impl cast_csv marco in event.ex
 
   defp parse_csv_plug_file(%Plug.Upload{content_type: "text/csv", path: path}) do
-    {_, list } = File.stream!(path)
+    {_, list } = path
+    |> File.stream!
     |> CSV.decode!(headers: @csv_headers, strip_fields: true)
     |> Enum.to_list
     |> List.pop_at(0)

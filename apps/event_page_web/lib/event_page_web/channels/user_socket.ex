@@ -1,10 +1,10 @@
 defmodule EventPage.Web.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
+  # Channels
   # channel "room:*", EventPage.Web.RoomChannel
 
-  ## Transports
+  # Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll
 

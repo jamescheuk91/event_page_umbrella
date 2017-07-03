@@ -223,7 +223,4 @@ defmodule EventPage.PageContents do
   def change_attendee(%Attendee{} = attendee) do
     Attendee.changeset(attendee, %{})
   end
-
-
-
 end

@@ -39,9 +39,9 @@ defmodule EventPage.Web.AttendeeControllerTest do
     conn = get conn, attendee_path(conn, :show, event.id, attendee.id)
     response = html_response(conn, 200)
 
-    assert response =~ "#{attendee.name}"
-    assert response =~ "#{attendee.title}"
-    assert response =~ "#{attendee.description}"
+    assert response =~ attendee.name
+    assert response =~ attendee.title
+    assert response =~ attendee.description
   end
 
   test "renders form for new events", %{conn: conn} do
@@ -58,9 +58,10 @@ defmodule EventPage.Web.AttendeeControllerTest do
 
     conn = get conn, attendee_path(conn, :show, event.id, id)
     response = html_response(conn, 200)
-    assert response =~ "#{@create_attrs.name}"
-    assert response =~ "#{@create_attrs.title}"
-    assert response =~ "#{@create_attrs.description}"
+
+    assert response =~ "some name"
+    assert response =~ "some title"
+    assert response =~ "some description"
   end
 
   test "does not create attendee and renders errors when data is invalid", %{conn: conn} do

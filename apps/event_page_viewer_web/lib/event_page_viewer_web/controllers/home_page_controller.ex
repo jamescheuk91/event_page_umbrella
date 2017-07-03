@@ -1,4 +1,4 @@
-defmodule EventPageViewer.Web.EventPageController do
+defmodule EventPageViewer.Web.HomePageController do
   use EventPageViewer.Web, :controller
 
   alias EventPage.PageContents

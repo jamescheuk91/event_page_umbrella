@@ -72,10 +72,10 @@ defmodule EventPage.PageContentsTest do
 
     test "create_event/1 with invalid data returns error changeset (validate_length max name description)" do
       fake_name = Faker.Lorem.sentence(%Range{first: 101, last: 1000})
-      fake_description = Faker.Lorem.sentence(%Range{first: 501, last: 5000})
+      fake_description = Faker.Lorem.sentence(%Range{first: 1001, last: 5000})
       invalid_name_lenght_attrs = %{name: fake_name, description: fake_description, banner: @fixture_banner_upload1}
       expected_errors = [
-        description: {"should be at most %{count} character(s)", [count: 500, validation: :length, max: 500]},
+        description: {"should be at most %{count} character(s)", [count: 1000, validation: :length, max: 1000]},
         name: {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]},
       ]
       assert {:error, %Ecto.Changeset{} = changeset} = PageContents.create_event(invalid_name_lenght_attrs)
@@ -213,10 +213,12 @@ defmodule EventPage.PageContentsTest do
       event = event_fixture()
       fake_name = Faker.Lorem.sentence(%Range{first: 101, last: 1000})
       fake_title = Faker.Lorem.sentence(%Range{first: 101, last: 1000})
-      fake_description = Faker.Lorem.sentence(%Range{first: 501, last: 5000})
-      invalid_name_lenght_attrs = %{name: fake_name, description: fake_description, title: fake_title, page_contents_event_id: event.id}
+      fake_description = Faker.Lorem.sentence(%Range{first: 1001, last: 5000})
+      invalid_name_lenght_attrs = %{
+        name: fake_name, description: fake_description, title: fake_title, page_contents_event_id: event.id
+      }
       expected_errors = [
-        description: {"should be at most %{count} character(s)", [count: 500, validation: :length, max: 500]},
+        description: {"should be at most %{count} character(s)", [count: 1000, validation: :length, max: 1000]},
         title: {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]},
         name: {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]}
       ]

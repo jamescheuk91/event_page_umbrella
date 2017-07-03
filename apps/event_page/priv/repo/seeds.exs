@@ -15,7 +15,8 @@ alias EventPage.PageContents.Event
 event_seeds = [
   %Event{
     name: "RISE | HONG KONG 2017 |",
-    description: "RISE is produced by the team behind Web Summit. In 6 short years, Web Summit has become Europe's largest tech conference which last year attracted 53,000 ..."
+    description: "RISE is produced by the team behind Web Summit.
+    In 6 short years, Web Summit has become Europe's largest tech conference which last year attracted 53,000 ..."
   }
 ]
 
