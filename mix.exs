@@ -24,6 +24,8 @@ defmodule EventPage.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
+      {:mix_test_watch, "~> 0.3.3", only: :dev, runtime: false},
+      {:dogma, "~> 0.1", only: :dev},
       {:distillery, "~> 1.4.1"},
       {:edeliver, "~> 1.4.3"}
     ]

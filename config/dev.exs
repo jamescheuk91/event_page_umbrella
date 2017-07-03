@@ -1,5 +1,12 @@
 use Mix.Config
 
+config :mix_test_watch,
+    clear: true,
+    tasks: [
+      "test",
+      "dogma",
+    ]
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
