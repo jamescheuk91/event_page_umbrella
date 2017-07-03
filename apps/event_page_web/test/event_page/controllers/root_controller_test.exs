@@ -1,5 +1,5 @@
 defmodule EventPage.Web.RootControllerTest do
-  use EventPage.Web.ConnCase
+  use EventPage.Web.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

@@ -1,7 +1,7 @@
 defmodule EventPage.Web.EventControllerTest do
   use EventPage.Web.ConnCase
 
-  alias EventPage.Events
+  alias EventPage.PageContents
 
 
   @create_attrs %{description: "some description", name: "some name",
@@ -12,9 +12,9 @@ defmodule EventPage.Web.EventControllerTest do
   }
   @invalid_attrs %{description: nil, name: nil}
 
-  def fixture(:event_detail) do
-    {:ok, event_detail} = Events.create_event_detail(@create_attrs)
-    event_detail
+  def fixture(:event) do
+    {:ok, event} = PageContents.create_event(@create_attrs)
+    event
   end
 
   test "lists all entries on index", %{conn: conn} do
@@ -23,10 +23,10 @@ defmodule EventPage.Web.EventControllerTest do
   end
 
   test "renders chosen event", %{conn: conn} do
-    event_detail = fixture(:event_detail)
-    conn = get conn, event_path(conn, :show, event_detail.id)
-    assert html_response(conn, 200) =~ "#{event_detail.name}"
-    assert html_response(conn, 200) =~ "#{event_detail.description}"
+    event = fixture(:event)
+    conn = get conn, event_path(conn, :show, event.id)
+    assert html_response(conn, 200) =~ "#{event.name}"
+    assert html_response(conn, 200) =~ "#{event.description}"
   end
 
   test "renders form for new events", %{conn: conn} do
@@ -34,8 +34,8 @@ defmodule EventPage.Web.EventControllerTest do
     assert html_response(conn, 200) =~ "New Event"
   end
 
-  test "creates event_detail and redirects to show when data is valid", %{conn: conn} do
-    conn = post conn, event_path(conn, :create), event_detail: @create_attrs
+  test "creates event and redirects to show when data is valid", %{conn: conn} do
+    conn = post conn, event_path(conn, :create), event: @create_attrs
 
     assert %{id: id} = redirected_params(conn)
     assert redirected_to(conn) == event_path(conn, :show, id)
@@ -45,37 +45,37 @@ defmodule EventPage.Web.EventControllerTest do
   end
 
   test "does not create event and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, event_path(conn, :create), event_detail: @invalid_attrs
+    conn = post conn, event_path(conn, :create), event: @invalid_attrs
     assert html_response(conn, 200) =~ "New Event"
   end
 
-  test "renders form for editing chosen event_detail", %{conn: conn} do
-    event_detail = fixture(:event_detail)
-    conn = get conn, event_path(conn, :edit, event_detail)
-    assert html_response(conn, 200) =~ "Edit #{event_detail.name}"
+  test "renders form for editing chosen event", %{conn: conn} do
+    event = fixture(:event)
+    conn = get conn, event_path(conn, :edit, event)
+    assert html_response(conn, 200) =~ "Edit #{event.name}"
   end
 
   test "updates chosen event and redirects when data is valid", %{conn: conn} do
-    event_detail = fixture(:event_detail)
-    conn = put conn, event_path(conn, :update, event_detail), event_detail: @update_attrs
-    assert redirected_to(conn) == event_path(conn, :show, event_detail)
+    event = fixture(:event)
+    conn = put conn, event_path(conn, :update, event), event: @update_attrs
+    assert redirected_to(conn) == event_path(conn, :show, event)
 
-    conn = get conn, event_path(conn, :show, event_detail)
+    conn = get conn, event_path(conn, :show, event)
     assert html_response(conn, 200) =~ "some updated description"
   end
 
   test "does not update chosen event and renders errors when data is invalid", %{conn: conn} do
-    event_detail = fixture(:event_detail)
-    conn = put conn, event_path(conn, :update, event_detail), event_detail: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit #{event_detail.name}"
+    event = fixture(:event)
+    conn = put conn, event_path(conn, :update, event), event: @invalid_attrs
+    assert html_response(conn, 200) =~ "Edit #{event.name}"
   end
 
   test "deletes chosen event", %{conn: conn} do
-    event_detail = fixture(:event_detail)
-    conn = delete conn, event_path(conn, :delete, event_detail)
+    event = fixture(:event)
+    conn = delete conn, event_path(conn, :delete, event)
     assert redirected_to(conn) == event_path(conn, :index)
 
-    conn = get conn, event_path(conn, :show, event_detail)
+    conn = get conn, event_path(conn, :show, event)
     assert html_response(conn, 404) =~ "Page Not Found"
   end
 

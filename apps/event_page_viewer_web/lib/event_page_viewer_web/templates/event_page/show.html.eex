@@ -1,9 +1,9 @@
 
 <div class="jumbotron">
-  <h2><%= @event_detail.name %></h2>
-  <%= img_tag(EventPage.Web.BannerUploader.url({@event_detail.banner, @event_detail},:original))%>
+  <h2><%= @event.name %></h2>
+  <%= img_tag(EventPage.Web.BannerUploader.url({@event.banner, @event},:original))%>
   <p>
-    <%= @event_detail.description %>
+    <%= @event.description %>
   </p>
 
 </div>

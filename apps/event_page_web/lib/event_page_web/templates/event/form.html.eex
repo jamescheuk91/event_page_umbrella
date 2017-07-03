@@ -5,7 +5,7 @@
     </div>
   <% end %>
 
-  <%= render "event_detail_form_fields", f: f %>
+  <%= render "form_fields.html", f: f %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

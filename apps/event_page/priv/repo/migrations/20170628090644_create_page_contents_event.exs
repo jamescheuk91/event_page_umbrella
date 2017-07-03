@@ -1,8 +1,8 @@
-defmodule EventPage.Repo.Migrations.CreateEventPage.Events.EventDetail do
+defmodule EventPage.Repo.Migrations.CreateEventPage.PageContents.Event do
   use Ecto.Migration
 
   def change do
-    create table(:events_event_details) do
+    create table(:page_contents_events) do
       add :name, :text
       add :description, :text
 

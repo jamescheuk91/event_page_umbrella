@@ -1,23 +1,23 @@
-defmodule EventPage.Events.EventDetail do
+defmodule EventPage.PageContents.Event do
   use Ecto.Schema
   use Arc.Ecto.Schema
 
   import Ecto.Changeset
-  alias EventPage.Events.EventDetail
+  alias EventPage.PageContents.Event
   alias EventPage.Web.BannerUploader
 
 
-  schema "events_event_details" do
-    field :description, :string
+  schema "page_contents_events" do
     field :name, :string
+    field :description, :string
     field :banner, BannerUploader.Type
 
     timestamps()
   end
 
   @doc false
-  def changeset(%EventDetail{} = event_detail, attrs) do
-    event_detail
+  def changeset(%Event{} = event, attrs) do
+    event
     |> cast(attrs, [:name, :description])
     |> cast_attachments(attrs, [:banner])
     |> validate_required([:name, :description, :banner])

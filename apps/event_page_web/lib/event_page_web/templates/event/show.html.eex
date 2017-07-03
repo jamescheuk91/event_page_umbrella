@@ -1,6 +1,26 @@
-<h2><%= @event_detail.name %></h2>
+<h2><%= @event.name %></h2>
 
-<%= render "event_detail_show.html", event_detail: @event_detail %>
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <br/>
+    <%= @event.name %>
+  </li>
 
-<span><%= link "Edit", to: event_path(@conn, :edit, @event_detail) %></span>
+  <li>
+    <strong>Description:</strong>
+    <br/>
+    <%= @event.description %>
+  </li>
+
+  <li>
+    <strong>Banner: </strong>
+    <br/>
+    <%= img_tag(EventPage.Web.BannerUploader.url({@event.banner, @event},:original))%>
+  </li>
+</ul>
+
+
+
+<span><%= link "Edit", to: event_path(@conn, :edit, @event) %></span>
 <span><%= link "Back", to: event_path(@conn, :index) %></span>

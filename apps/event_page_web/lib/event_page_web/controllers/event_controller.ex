@@ -1,64 +1,62 @@
 defmodule EventPage.Web.EventController do
   use EventPage.Web, :controller
 
-  alias EventPage.Events
-  alias EventPage.Events.EventDetail
-
-  # plug :put_event_detail when action in [:show]
+  alias EventPage.PageContents
+  alias EventPage.PageContents.Event
 
   action_fallback EventPage.Web.FallbackController
 
   def index(conn, _params) do
-    event_details = Events.list_event_details()
-    render(conn, "index.html", event_details: event_details)
+    events = PageContents.list_events()
+    render(conn, "index.html", events: events)
   end
 
   def new(conn, _params) do
-    changeset = Events.change_event_detail(%EventPage.Events.EventDetail{})
+    changeset = PageContents.change_event(%Event{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"event_detail" => event_detail_params}) do
-    case Events.create_event_detail(event_detail_params) do
-      {:ok, event_detail} ->
+  def create(conn, %{"event" => event_params}) do
+    case PageContents.create_event(event_params) do
+      {:ok, event} ->
         conn
-        |> put_flash(:info, "Event detail created successfully.")
-        |> redirect(to: event_path(conn, :show, event_detail))
+        |> put_flash(:info, "Event created successfully.")
+        |> redirect(to: event_path(conn, :show, event))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    with %EventDetail{} = event_detail <- Events.get_event_detail(id) do
-      conn |> render("show.html", event_detail: event_detail)
+    with %Event{} = event <- PageContents.get_event(id) do
+      conn |> render("show.html", event: event)
     end
   end
 
   def edit(conn, %{"id" => id}) do
-    event_detail = Events.get_event_detail!(id)
-    changeset = Events.change_event_detail(event_detail)
-    render(conn, "edit.html", event_detail: event_detail, changeset: changeset)
+    event = PageContents.get_event!(id)
+    changeset = PageContents.change_event(event)
+    render(conn, "edit.html", event: event, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "event_detail" => event_detail_params}) do
-    event_detail = Events.get_event_detail!(id)
+  def update(conn, %{"id" => id, "event" => event_params}) do
+    event = PageContents.get_event!(id)
 
-    case Events.update_event_detail(event_detail, event_detail_params) do
-      {:ok, event_detail} ->
+    case PageContents.update_event(event, event_params) do
+      {:ok, event} ->
         conn
         |> put_flash(:info, "Event detail updated successfully.")
-        |> redirect(to: event_path(conn, :show, event_detail))
+        |> redirect(to: event_path(conn, :show, event))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", event_detail: event_detail, changeset: changeset)
+        render(conn, "edit.html", event: event, changeset: changeset)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    with %EventDetail{} = event_detail <- Events.get_event_detail(id),
-          {:ok, _event_detail} <- Events.delete_event_detail(event_detail) do
+    with %Event{} = event <- PageContents.get_event(id),
+          {:ok, _event} <- PageContents.delete_event(event) do
       conn
-      |> put_flash(:info, "Event detail deleted successfully.")
+      |> put_flash(:info, "Event deleted successfully.")
       |> redirect(to: event_path(conn, :index))
     end
   end

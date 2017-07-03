@@ -1,10 +1,10 @@
 defmodule EventPageViewer.Web.RootController do
   use EventPageViewer.Web, :controller
 
-  alias EventPage.Events
+  alias EventPage.PageContents
 
   def index(conn, _params) do
-    events = Events.list_event_details()
+    events = PageContents.list_events()
     render(conn, "index.html", events: events)
   end
 

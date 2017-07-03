@@ -27,8 +27,13 @@ defmodule EventPageViewer.Web.ConnCase do
   end
 
 
-  setup _tags do
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+  setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EventPage.Repo)
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(EventPage.Repo, {:shared, self()})
+    end
+    conn = Phoenix.ConnTest.build_conn()
+    {:ok, conn: conn}
   end
 
 end

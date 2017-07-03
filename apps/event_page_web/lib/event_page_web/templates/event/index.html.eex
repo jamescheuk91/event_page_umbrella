@@ -10,15 +10,15 @@
     </tr>
   </thead>
   <tbody>
-  <%= for event_detail <- @event_details do %>
+  <%= for event <- @events do %>
     <tr>
-      <td><%= event_detail.name %></td>
-      <td><%= event_detail.description %></td>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: event_path(@conn, :show, event_detail), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: event_path(@conn, :edit, event_detail), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: event_path(@conn, :delete, event_detail), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: event_path(@conn, :show, event), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: event_path(@conn, :edit, event), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
   <% end %>
