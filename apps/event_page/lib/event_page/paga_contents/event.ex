@@ -13,7 +13,7 @@ defmodule EventPage.PageContents.Event do
     field :description, :string
     field :banner, BannerUploader.Type
 
-    has_many :attendees, Attendee
+    has_many :attendees, Attendee, foreign_key: :page_contents_event_id, on_replace: :delete
     timestamps()
   end
 

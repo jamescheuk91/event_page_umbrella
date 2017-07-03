@@ -90,6 +90,17 @@ defmodule EventPage.PageContentsTest do
       assert event.name == "some updated name"
     end
 
+    test "update_event/2 with valid attendees list updates the event" do
+      event = event_fixture()
+      attendees_list = [%{name: "attendee1 name", title: "attendee1 title", description: "attendee1 description"}]
+      update_attrs = @update_attrs |> Map.put(:attendees, attendees_list)
+      assert {:ok, event} = PageContents.update_event(event, update_attrs)
+      assert %Event{} = event
+      assert event.description == "some updated description"
+      assert event.name == "some updated name"
+      assert length(event.attendees) == 1
+    end
+
     test "update_event/2 with invalid data returns error changeset  (validate_required)" do
       event = event_fixture()
       expected_errors = [
@@ -180,8 +191,7 @@ defmodule EventPage.PageContentsTest do
       expected_errors = [
         name: {"can't be blank", [validation: :required]},
         title: {"can't be blank", [validation: :required]},
-        description: {"can't be blank", [validation: :required]},
-        page_contents_event_id: {"can't be blank", [validation: :required]}
+        description: {"can't be blank", [validation: :required]}
       ]
       assert {:error, %Ecto.Changeset{} = changeset } = PageContents.create_attendee(@invalid_attrs)
       assert changeset.errors == expected_errors

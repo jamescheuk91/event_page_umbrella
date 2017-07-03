@@ -13,7 +13,6 @@ defmodule EventPage.PageContents.Attendee do
     field :title, :string
     field :description, :string
     field :avatar, AvatarUploader.Type
-
     belongs_to :event, Event, foreign_key: :page_contents_event_id
 
     timestamps()
@@ -24,7 +23,7 @@ defmodule EventPage.PageContents.Attendee do
     attendee
     |> cast(attrs, [:name, :title, :description, :page_contents_event_id])
     |> cast_attachments(attrs, [:avatar])
-    |> validate_required([:name, :title, :description, :page_contents_event_id])
+    |> validate_required([:name, :title, :description])
     |> validate_length(:name, min: 3, max: 100)
     |> validate_length(:title, min: 3, max: 100)
     |> validate_length(:description, min: 3, max: 500)

@@ -64,6 +64,7 @@ defmodule EventPage.PageContents do
   def create_event(attrs \\ %{}) do
     %Event{}
     |> Event.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:attendees)
     |> Repo.insert()
   end
 
@@ -81,7 +82,9 @@ defmodule EventPage.PageContents do
   """
   def update_event(%Event{} = event, attrs) do
     event
+    |> Repo.preload(:attendees)
     |> Event.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:attendees)
     |> Repo.update()
   end
 
