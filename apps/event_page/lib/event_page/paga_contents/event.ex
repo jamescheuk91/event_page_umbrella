@@ -4,6 +4,7 @@ defmodule EventPage.PageContents.Event do
 
   import Ecto.Changeset
   alias EventPage.PageContents.Event
+  alias EventPage.PageContents.Attendee
   alias EventPage.Web.BannerUploader
 
 
@@ -12,6 +13,7 @@ defmodule EventPage.PageContents.Event do
     field :description, :string
     field :banner, BannerUploader.Type
 
+    has_many :attendees, Attendee
     timestamps()
   end
 
@@ -20,7 +22,7 @@ defmodule EventPage.PageContents.Event do
     event
     |> cast(attrs, [:name, :description])
     |> cast_attachments(attrs, [:banner])
-    |> validate_required([:name, :description, :banner])
+    |> validate_required([:name, :description])
     |> validate_length(:name, min: 3, max: 100)
     |> validate_length(:description, min: 3, max: 500)
   end
