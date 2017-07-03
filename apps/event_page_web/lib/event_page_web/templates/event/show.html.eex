@@ -21,7 +21,7 @@
 </ul>
 
 <%= if length(@attendees)> 0 do %>
-<%= render "attendees_index.html", attendees: @attendees %>
+<%= render "attendee_index_items.html", conn: @conn, event: @event, attendees: @attendees %>
 <%= end %>
 
 

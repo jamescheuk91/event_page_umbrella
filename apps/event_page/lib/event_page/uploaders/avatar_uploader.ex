@@ -22,7 +22,7 @@ defmodule EventPage.Web.AvatarUploader do
 
   # Override the storage directory:
   def storage_dir(version, _) do
-    "page_contents/attendee/avatars/#{version}"
+    "uploads/page_contents/attendee/avatars/#{version}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

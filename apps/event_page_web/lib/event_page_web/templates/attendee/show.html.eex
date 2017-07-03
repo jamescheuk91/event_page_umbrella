@@ -1,0 +1,31 @@
+<h2><%= @attendee.name %></h2>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <br/>
+    <%= @attendee.name %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <br/>
+    <%= @attendee.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <br/>
+    <%= @attendee.description %>
+  </li>
+
+  <li>
+    <strong>Avatar: </strong>
+    <br/>
+    <%= img_tag(EventPage.Web.AvatarUploader.url({@attendee.avatar, @attendee},:original))%>
+  </li>
+</ul>
+
+
+<span><%= link "Edit", to: attendee_path(@conn, :edit, @attendee.page_contents_event_id, @attendee) %></span>
+<span><%= link "Back", to: attendee_path(@conn, :index, @attendee.page_contents_event_id) %></span>

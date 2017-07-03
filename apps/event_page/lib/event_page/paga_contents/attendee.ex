@@ -13,6 +13,7 @@ defmodule EventPage.PageContents.Attendee do
     field :title, :string
     field :description, :string
     field :avatar, AvatarUploader.Type
+    
     belongs_to :event, Event, foreign_key: :page_contents_event_id
 
     timestamps()

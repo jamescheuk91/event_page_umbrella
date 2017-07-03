@@ -4,7 +4,7 @@ defmodule EventPage.Web.EventView do
   alias EventPage.Web.AttendeeView
 
 
-  def render("attendees_index.html", %{attendees: attendees}) do
-    render(AttendeeView, "index.html", %{attendees: attendees})
+  def render("attendee_index_items.html", %{conn: conn, event: event, attendees: attendees}) do
+    render(AttendeeView, "index_items.html", %{conn: conn, event: event, attendees: attendees})
   end
 end

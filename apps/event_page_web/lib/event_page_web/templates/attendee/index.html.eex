@@ -1,19 +1,5 @@
-<h3>Listing Attendees</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
+<h2><%= link "#{@event.name}", to: event_path(@conn, :show, @event.id) %></h2>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= for attendee <- @attendees do %>
-    <tr>
-      <td><%= attendee.name %></td>
-      <td><%= attendee.title %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render "index_items.html", conn: @conn, event: @event, attendees: @attendees %>
+
+<span><%= link "Add New Event Attendee", to: attendee_path(@conn, :new, @event.id) %></span>

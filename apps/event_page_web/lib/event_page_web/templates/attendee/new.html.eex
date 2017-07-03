@@ -1,0 +1,5 @@
+<h2>New Event Attendee for <br/><%= @event.name %></h2>
+
+<%= render "form.html", changeset: @changeset, action: attendee_path(@conn, :create, @event.id) %>
+
+<span><%= link "Back", to: attendee_path(@conn, :index, @event.id) %></span>

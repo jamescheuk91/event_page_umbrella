@@ -26,8 +26,9 @@ defmodule EventPage.Web.EventControllerTest do
   test "renders chosen event", %{conn: conn} do
     event = fixture(:event)
     conn = get conn, event_path(conn, :show, event.id)
-    assert html_response(conn, 200) =~ "#{event.name}"
-    assert html_response(conn, 200) =~ "#{event.description}"
+    response = html_response(conn, 200)
+    assert response =~ "#{event.name}"
+    assert response =~ "#{event.description}"
   end
 
   test "renders form for new events", %{conn: conn} do
@@ -42,8 +43,9 @@ defmodule EventPage.Web.EventControllerTest do
     assert redirected_to(conn) == event_path(conn, :show, id)
 
     conn = get conn, event_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "#{@create_attrs.name}"
-    assert html_response(conn, 200) =~ "Gary Vaynerchuk"
+    response = html_response(conn, 200)
+    assert response =~ "#{@create_attrs.name}"
+    assert response =~ "Gary Vaynerchuk"
   end
 
   test "does not create event and renders errors when data is invalid", %{conn: conn} do
