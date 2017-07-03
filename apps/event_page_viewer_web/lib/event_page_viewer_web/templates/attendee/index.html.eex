@@ -1,0 +1,27 @@
+<% alias EventPage.Web.AvatarUploader %>
+<div class="row">
+  <%= for attendee <- @attendees do %>
+    <div  class="col-12 col-sm-6  col-lg-4">
+      <div class="card">
+        <%= if attendee.avatar do %>
+          <figure class="figure">
+          <%=
+            img_tag(
+              AvatarUploader.url({attendee.avatar, attendee}, :figure),
+              class: "figure-img img-fluid rounded", alt: "#{attendee.name}'s Avatar"
+            )
+          %>
+          <figcaption class="figure-caption"><%= attendee.title %></figcaption>
+        </figure>
+
+        <% end %>
+        <div class="card-block">
+          <h4 class="card-title"><%= attendee.name %></h4>
+          <p class="card-text">
+            <%= attendee.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

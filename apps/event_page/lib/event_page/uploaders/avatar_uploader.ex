@@ -3,17 +3,22 @@ defmodule EventPage.Web.AvatarUploader do
   use Arc.Ecto.Definition
 
   @acl :public_read
-  @versions [:original]
+  @versions [:original, :figure, :thumb]
 
   # Whitelist file extensions:
   def validate({file, _}) do
     ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
   end
 
+  # Define a figure transformation:
+  def transform(:figure, _) do
+    {:convert, "-strip -thumbnail 500x500^ -gravity center -extent 500x500 -format png", :png}
+  end
+
   # Define a thumbnail transformation:
-  # def transform(:thumb, _) do
-  #   {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-  # end
+  def transform(:thumb, _) do
+    {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
+  end
 
   # Override the persisted filenames:
   # def filename(version, _) do
