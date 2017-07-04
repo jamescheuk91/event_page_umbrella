@@ -40,7 +40,7 @@ end
 # will be used by default
 
 release :event_page_umbrella do
-  set version: "0.0.5"
+  set version: "0.0.6"
   set applications: [
     :runtime_tools,
     event_page: :permanent,

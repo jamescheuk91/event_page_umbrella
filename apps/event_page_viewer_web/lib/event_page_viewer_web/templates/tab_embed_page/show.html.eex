@@ -1,0 +1,3 @@
+<div class="embed-container">
+  <%= tag(:embed, type: "text/html", src: @tab_embed.url) %>
+</div>

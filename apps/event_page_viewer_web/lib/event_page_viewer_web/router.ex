@@ -25,8 +25,8 @@ defmodule EventPageViewer.Web.Router do
 
     pipe_through :event_page_layout
     get "/:id", HomePageController, :show
-    get "/:event_id/attendees", AttendeeController, :index
-    get "/:event_id/:tab_name", TabPageController, :show
+    get "/:event_id/attendees", AttendeePageController, :index
+    get "/:event_id/:title", TabEmbedPageController, :show
   end
 
   # Other scopes may use custom stacks.

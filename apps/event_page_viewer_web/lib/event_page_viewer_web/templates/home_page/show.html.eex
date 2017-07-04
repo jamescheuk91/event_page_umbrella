@@ -12,7 +12,7 @@
     </p>
     <hr class="my-4">
     <p class="lead">
-      <%= link "Learn more our attendees", to: attendee_path(@conn, :index, @event.id), class: "btn btn-primary btn-lg", role: "button" %>
+      <%= link "Learn more about our attendees", to: attendee_page_path(@conn, :index, @event.id), class: "btn btn-primary btn-lg", role: "button" %>
     </p>
   </div>
 

@@ -16,18 +16,23 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <%= link "#{@event.name}", to: home_page_path(@conn, :show, @event.id), class: "navbar-brand mb-0" %>
+      <%= link "#{@event.name}", to: home_page_path(@conn, :show, @event), class: "navbar-brand mb-0" %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
           <li class="nav-item">
-            <%= link "Home", to: home_page_path(@conn, :show, @event.id), class: "nav-link" %>
+            <%= link "Home", to: home_page_path(@conn, :show, @event), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link "Attendees", to: attendee_path(@conn, :index, @event.id), class: "nav-link" %>
+            <%= link "Attendees", to: attendee_page_path(@conn, :index, @event), class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link "Tab", to: tab_page_path(@conn, :show, @event.id, 1), class: "nav-link" %>
-          </li>
+
+          <%= for tab_embed <- @tab_embeds do %>
+            <li class="nav-item">
+              <%= link tab_embed.title, to: tab_embed_page_path(@conn, :show, @event, tab_embed.title), class: "nav-link" %>
+            </li>
+          <% end %>
+
         </ul>
       </div>
     </nav>
