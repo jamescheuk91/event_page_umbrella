@@ -37,8 +37,8 @@ config :event_page_viewer_web, EventPageViewer.Web.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/event_page_viewer_web/web/views/.*(ex)$},
-      ~r{lib/event_page_viewer_web/web/templates/.*(eex)$}
+      ~r{lib/event_page_viewer_web/views/.*(ex)$},
+      ~r{lib/event_page_viewer_web/templates/.*(eex)$}
     ]
   ]
 
