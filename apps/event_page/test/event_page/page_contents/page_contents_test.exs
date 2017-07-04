@@ -340,7 +340,6 @@ defmodule EventPage.PageContentsTest do
     test "create_attendee/1 with invalid data returns error changeset (validate_length min name title description)", %{event: event} do
       invalid_name_lenght_attrs = %{name: "so", description: "s", title: "s", page_contents_event_id: event.id}
       expected_errors = [
-        description: {"should be at least %{count} character(s)", [count: 3, validation: :length, min: 3]},
         title: {"should be at least %{count} character(s)", [count: 3, validation: :length, min: 3]},
         name: {"should be at least %{count} character(s)", [count: 3, validation: :length, min: 3]},
       ]
@@ -356,7 +355,6 @@ defmodule EventPage.PageContentsTest do
         name: fake_name, description: fake_description, title: fake_title, page_contents_event_id: event.id
       }
       expected_errors = [
-        description: {"should be at most %{count} character(s)", [count: 1000, validation: :length, max: 1000]},
         title: {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]},
         name: {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]}
       ]

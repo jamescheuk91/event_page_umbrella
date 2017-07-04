@@ -47,7 +47,7 @@ defmodule EventPage.Web.EventController do
     event = PageContents.get_event!(id)
     event_params = event_params |> put_attendees_params
 
-    case PageContents.update_event(event, event_params) do
+    case PageContents.update_event(event, event_params, assocs: [:attendees, :tab_embeds]) do
       {:ok, event} ->
         conn
         |> put_flash(:info, "Event detail updated successfully.")

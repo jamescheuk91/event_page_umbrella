@@ -27,6 +27,5 @@ defmodule EventPage.PageContents.Attendee do
     |> validate_required([:name, :title, :description])
     |> validate_length(:name, min: 3, max: 100)
     |> validate_length(:title, min: 3, max: 100)
-    |> validate_length(:description, min: 3, max: 1000)
   end
 end
