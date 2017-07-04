@@ -21,7 +21,7 @@ defmodule EventPage.Web.EventController do
   def create(conn, %{"event" => event_params}) do
     event_params = event_params |> put_attendees_params
 
-    case PageContents.create_event(event_params) do
+    case PageContents.create_event(event_params, assocs: [:tab_embeds, :attendees]) do
       {:ok, event} ->
         conn
         |> put_flash(:info, "Event created successfully.")

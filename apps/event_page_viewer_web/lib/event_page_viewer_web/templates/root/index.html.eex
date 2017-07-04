@@ -1,6 +1,8 @@
-<div class="jumbotron">
-  <h2 class="display-4">Welcome to EventPageViewer!</h2>
-  <p class="lead">A place for you to view event pages!</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4">Welcome to PageViewer!</h2>
+    <p class="lead">A place for you to view event pages!</p>
+  </div>
 </div>
 
 

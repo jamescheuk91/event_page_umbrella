@@ -3,6 +3,6 @@ defmodule EventPageViewer.Web.RootControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to EventPageViewer!"
+    assert html_response(conn, 200) =~ "Welcome to PageViewer!"
   end
 end

@@ -4,6 +4,7 @@ defmodule EventPage.PageContents.Event do
 
   import Ecto.Changeset
   alias EventPage.PageContents.Event
+  alias EventPage.PageContents.TabEmbed
   alias EventPage.PageContents.Attendee
   alias EventPage.Web.BannerUploader
 
@@ -13,6 +14,7 @@ defmodule EventPage.PageContents.Event do
     field :description, :string
     field :banner, BannerUploader.Type
 
+    has_many :tab_embeds, TabEmbed, foreign_key: :page_contents_event_id
     has_many :attendees, Attendee, foreign_key: :page_contents_event_id, on_replace: :delete
     timestamps()
   end
