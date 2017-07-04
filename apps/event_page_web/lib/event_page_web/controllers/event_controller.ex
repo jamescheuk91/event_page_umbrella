@@ -32,9 +32,8 @@ defmodule EventPage.Web.EventController do
   end
 
   def show(conn, %{"id" => id}) do
-    with %Event{} = event <- PageContents.get_event(id),
-          attendees <- PageContents.list_attendees(event.id) do
-      conn |> render("show.html", event: event, attendees: attendees)
+    with %Event{} = event <- PageContents.get_event(id, preload: [:tab_embeds, :attendees]) do
+      conn |> render("show.html", event: event, tab_embeds: event.tab_embeds, attendees: event.attendees)
     end
   end
 

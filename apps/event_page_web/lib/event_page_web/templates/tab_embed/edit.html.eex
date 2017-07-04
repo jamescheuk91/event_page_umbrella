@@ -1,0 +1,6 @@
+<h2><%= @event.name %></h2>
+<h3>Edit <%= @tab_embed.title %></h3>
+
+<%= render "form.html", changeset: @changeset, action: tab_embed_path(@conn, :update, @event.id, @tab_embed.id) %>
+
+<span><%= link "Back", to: tab_embed_path(@conn, :index, @event.id) %></span>

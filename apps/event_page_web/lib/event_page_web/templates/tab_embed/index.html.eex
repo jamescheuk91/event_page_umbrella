@@ -1,0 +1,7 @@
+<h2><%= link "#{@event.name}", to: event_path(@conn, :show, @event.id) %></h2>
+
+<%= render "index_items.html", conn: @conn, event: @event, tab_embeds: @tab_embeds %>
+
+<span><%= link "Add New Event TabEmbed", to: tab_embed_path(@conn, :new, @event) %></span>
+<br/>
+<span><%= link "Back to #{@event.name}", to: event_path(@conn, :show, @event) %></span>

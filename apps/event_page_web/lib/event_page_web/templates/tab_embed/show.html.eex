@@ -1,0 +1,19 @@
+<h2><%= @event.name %></h2>
+<h3><%= @tab_embed.title %></h3>
+<ul>
+  <li>
+    <strong>Title:</strong>
+    <br/>
+    <%= @tab_embed.title %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <br/>
+    <%= @tab_embed.url %>
+  </li>
+</ul>
+
+
+<span><%= link "Edit", to: tab_embed_path(@conn, :edit, @tab_embed.page_contents_event_id, @tab_embed) %></span>
+<span><%= link "Back", to: tab_embed_path(@conn, :index, @tab_embed.page_contents_event_id) %></span>

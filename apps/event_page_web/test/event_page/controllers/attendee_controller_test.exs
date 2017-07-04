@@ -44,9 +44,10 @@ defmodule EventPage.Web.AttendeeControllerTest do
     assert response =~ attendee.description
   end
 
-  test "renders form for new events", %{conn: conn} do
-    conn = get conn, event_path(conn, :new)
-    assert html_response(conn, 200) =~ "New Event"
+  test "renders form for new attendee", %{conn: conn} do
+    event = fixture(:event)
+    conn = get conn, attendee_path(conn, :new, event.id)
+    assert html_response(conn, 200) =~ "New Event Attendee"
   end
 
   test "creates attendee and redirects to show when data is valid", %{conn: conn} do
@@ -71,11 +72,11 @@ defmodule EventPage.Web.AttendeeControllerTest do
     assert response =~ "New Event Attendee"
   end
 
-  test "renders form for editing chosen event", %{conn: conn} do
+  test "renders form for editing chosen attendee", %{conn: conn} do
     event = fixture(:event)
     attendee = fixture(:attendee, event.id)
     conn = get conn, attendee_path(conn, :edit, event.id, attendee.id)
-    assert html_response(conn, 200) =~ "Edit #{event.name}"
+    assert html_response(conn, 200) =~ "Edit #{attendee.name}"
   end
 
   test "updates chosen attendee and redirects when data is valid", %{conn: conn} do
@@ -87,12 +88,12 @@ defmodule EventPage.Web.AttendeeControllerTest do
     conn = get conn, attendee_path(conn, :show, event.id, attendee.id)
     response = html_response(conn, 200)
 
-    assert response =~ "some updated description"
-    assert response =~ "some updated description"
+    assert response =~ "some updated name"
+    assert response =~ "some updated title"
     assert response =~ "some updated description"
   end
 
-  test "does not update chosen event and renders errors when data is invalid", %{conn: conn} do
+  test "does not update chosen attendee and renders errors when data is invalid", %{conn: conn} do
     event = fixture(:event)
     attendee = fixture(:attendee, event.id)
     conn = put conn, attendee_path(conn, :update, event.id, attendee.id), attendee: @invalid_attrs

@@ -1,5 +1,4 @@
 <h2><%= @event.name %></h2>
-
 <ul>
   <li>
     <strong>Name:</strong>
@@ -20,10 +19,23 @@
   </li>
 </ul>
 
-<%= if length(@attendees)> 0 do %>
-<%= render "attendee_index_items.html", conn: @conn, event: @event, attendees: @attendees %>
+
+<%= if length(@tab_embeds)> 0 do %>
+  <%= render "tab_embed_index_items.html", conn: @conn, event: @event, tab_embeds: @tab_embeds %>
 <%= end %>
+
+<span><%= link "Add New TabEmbed", to: tab_embed_path(@conn, :new, @event) %></span>
+<br/>
+
+<%= if length(@attendees)> 0 do %>
+  <%= render "attendee_index_items.html", conn: @conn, event: @event, attendees: @attendees %>
+<%= end %>
+<span><%= link "Add New Attendee", to: attendee_path(@conn, :new, @event) %></span>
+<br/>
 
 
 <span><%= link "Edit", to: event_path(@conn, :edit, @event) %></span>
+<br/>
+
 <span><%= link "Back", to: event_path(@conn, :index) %></span>
+<br/>
