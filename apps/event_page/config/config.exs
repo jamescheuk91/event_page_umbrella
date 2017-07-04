@@ -4,7 +4,7 @@ config :event_page, ecto_repos: [EventPage.Repo]
 
 config :arc,
   storage: Arc.Storage.S3,
-  version_timeout: 15_000, # milliseconds
+  version_timeout: 60_000, # milliseconds
   bucket: "event-page",
   virtual_host: true
 

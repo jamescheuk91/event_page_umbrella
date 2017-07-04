@@ -23,7 +23,7 @@
   <li>
     <strong>Avatar: </strong>
     <br/>
-    <%= img_tag(EventPage.Web.AvatarUploader.url({@attendee.avatar, @attendee},:original))%>
+    <%= img_tag(EventPage.Web.AvatarUploader.url({@attendee.avatar, @attendee}, :figure))%>
   </li>
 </ul>
 

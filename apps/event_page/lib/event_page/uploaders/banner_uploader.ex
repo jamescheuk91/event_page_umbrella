@@ -3,6 +3,7 @@ defmodule EventPage.Web.BannerUploader do
   use Arc.Ecto.Definition
 
   @acl :public_read
+  @async true
   @versions [:original]
 
   # Whitelist file extensions:
